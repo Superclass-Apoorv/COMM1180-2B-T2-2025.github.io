@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMM1180 Assessment 2B: Visual Student Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .overview-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .overview-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .overview-card strong {
+            color: #e74c3c;
+        }
+
+        .connection-flow {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flow-item {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: #ffeaa7;
+        }
+
+        .section-guide {
+            margin: 40px 0;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-content {
+            padding: 25px;
+            display: block;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .criteria-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 5px solid #e74c3c;
+        }
+
+        .timeline {
+            background: #2d3436;
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 30px 0;
+            align-items: center;
+        }
+
+        .timeline-week {
+            background: #00b894;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .timeline-content {
+            margin-left: 30px;
+            flex: 1;
+        }
+
+        .checklist {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .checklist-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .checklist-item::before {
+            content: "✓";
+            background: #00b894;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .process-step {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            position: relative;
+        }
+
+        .process-step::after {
+            content: "→";
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5em;
+            color: #74b9ff;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .process-flow {
+                flex-direction: column;
+            }
+            
+            .process-step::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 COMM1180 Assessment 2B</h1>
+            <p>Complete Visual Student Guide: From Mind Map to Professional Document</p>
+        </div>
+
+        <div class="overview-grid">
+            <div class="overview-card">
+                <h3>📅 Due Date</h3>
+                <p><strong>Wednesday 6th August 2025</strong><br>12pm AEST</p>
+            </div>
+            <div class="overview-card">
+                <h3>⚖️ Weight</h3>
+                <p><strong>15%</strong> of final grade</p>
+            </div>
+            <div class="overview-card">
+                <h3>📝 Length</h3>
+                <p><strong>Max 1200 words</strong> (±10%)<br>Excluding references</p>
+            </div>
+            <div class="overview-card">
+                <h3>📤 Submission</h3>
+                <p><strong>Via Turnitin</strong> on Moodle</p>
+            </div>
+        </div>
+
+        <div class="connection-flow">
+            <h2>🎯 How Assessment 2A and 2B Connect</h2>
+            <p style="margin-bottom: 20px;">Assessment 2B is NOT a new assignment - it's the written follow-up to your Assessment 2A video pitch!</p>
+            
+            <div class="flow-diagram">
+                <div class="flow-item">
+                    <h3>Assessment 2A</h3>
+                    <p>📹 Video Pitch</p>
+                    <ul style="text-align: left; margin-top: 10px;">
+                        <li>Company choice</li>
+                        <li>Business expansion idea</li>
+                        <li>Marketing strategies</li>
+                        <li>Technology integration</li>
+                        <li>Pricing approach</li>
+                    </ul>
+                </div>
+                <div class="flow-arrow">➡️</div>
+                <div class="flow-item">
+                    <h3>Assessment 2B</h3>
+                    <p>📄 Written Report</p>
+                    <ul style="text-align: left; margin-top: 10px;">
+                        <li>Same company & idea</li>
+                        <li>Two project proposals</li>
+                        <li>Financial analysis</li>
+                        <li>Investment recommendation</li>
+                        <li>Financing justification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-guide">
+            <h2 style="text-align: center; margin-bottom: 30px;">📝 Writing Your Report: Section-by-Section Guide</h2>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Section 1: Introduction (100-150 words)</h3>
+                </div>
+                <div class="section-content">
+                    <h4>Purpose: Set the stage for your financing request</h4>
+                    <ul style="margin: 15px 0;">
+                        <li>Brief company background and current market position</li>
+                        <li>Clear statement of your business expansion idea</li>
+                        <li>How this expansion creates value for the company</li>
+                        <li>Preview of why this warrants external financing</li>
+                    </ul>
+                    <div class="example-box">
+                        <h5>Example Opening:</h5>
+                        <p><em>"Woolworths Group, Australia's largest retail chain, has successfully dominated the traditional grocery market through its extensive store network and supply chain efficiency. However, to maintain its competitive edge and capture emerging consumer preferences for sustainable products, the company should expand into the rapidly growing eco-conscious consumer market. This report proposes launching a new line of eco-friendly reusable water bottles, which aligns with Woolworths' commitment to sustainability while opening new revenue streams..."</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Section 2: Proposal of Projects (250-300 words)</h3>
+                </div>
+                <div class="section-content">
+                    <h4>Purpose: Detail your two project options and their connection to Assessment 2A</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                        <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                            <h5>Project 1 Structure:</h5>
+                            <ul>
+                                <li>Overview & scope</li>
+                                <li>Target market</li>
+                                <li>Investment requirements</li>
+                                <li>Risk profile</li>
+                                <li>Marketing, Technology & Accounting Link</li>
+                            </ul>
+                        </div>
+                        <div style="background: #f3e5f5; padding: 15px; border-radius: 8px;">
+                            <h5>Project 2 Structure:</h5>
+                            <ul>
+                                <li>Overview & scope</li>
+                                <li>Target market</li>
+                                <li>Investment requirements</li>
+                                <li>Risk profile</li>
+                                <li>Marketing, Technology & Accounting Link</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="success-box">
+                        <strong>Key Success Factor:</strong> Clearly explain how each project differs in cost, risk, timeline, and target market. Then show strong connections to your Assessment 2A marketing, technology, and pricing strategies.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Section 3: Investment Analysis (300-400 words)</h3>
+                </div>
+                <div class="section-content">
+                    <h4>Purpose: Demonstrate understanding of financial evaluation methods</h4>
+                    <div class="criteria-grid">
+                        <div style="background: #e8f5e8; padding: 20px; border-radius: 8px;">
+                            <h5>NPV (Net Present Value)</h5>
+                            <p><strong>Best for:</strong> Projects with clear cash flow projections</p>
+                            <p><strong>Use when:</strong> You can predict revenue streams over time</p>
+                        </div>
+                        <div style="background: #fff3e0; padding: 20px; border-radius: 8px;">
+                            <h5>IRR (Internal Rate of Return)</h5>
+                            <p><strong>Best for:</strong> Comparing projects with different scales</p>
+                            <p><strong>Use when:</strong> You need to compare percentage returns</p>
+                        </div>
+                        <div style="background: #fce4ec; padding: 20px; border-radius: 8px;">
+                            <h5>Payback Period</h5>
+                            <p><strong>Best for:</strong> High-risk projects needing quick returns</p>
+                            <p><strong>Use when:</strong> Speed of capital recovery is crucial</p>
+                        </div>
+                        <div style="background: #e1f5fe; padding: 20px; border-radius: 8px;">
+                            <h5>Profitability Index</h5>
+                            <p><strong>Best for:</strong> When capital is limited</p>
+                            <p><strong>Use when:</strong> Comparing return per dollar invested</p>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <strong>Remember:</strong> You don't need to perform calculations! Focus on explaining why each tool suits your specific project characteristics.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Section 4: Evaluation & Recommendation (300-350 words)</h3>
+                </div>
+                <div class="section-content">
+                    <h4>Purpose: Recommend one project (out of the two) with strong justification</h4>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <h5>Clear Choice</h5>
+                            <p>State your recommended project</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Stakeholder Value</h5>
+                            <p>Show who benefits and how</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Strategic Fit</h5>
+                            <p>Connect to company mission</p>
+                        </div>
+                        <div class="process-step">
+                            <h5>Financial Future</h5>
+                            <p>Long-term sustainability</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-header">
+                    <h3>Section 5: Conclusion (100-200 words)</h3>
+                </div>
+                <div class="section-content">
+                    <h4>Purpose: Summarize and reinforce financing justification</h4>
+                    <div class="checklist">
+                        <div class="checklist-item">Main findings summary</div>
+                        <div class="checklist-item">Restatement of recommendation</div>
+                        <div class="checklist-item">Final financing argument</div>
+                        <div class="checklist-item">Forward-looking growth statement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #ff7675; color: white; padding: 30px; border-radius: 15px; margin: 40px 0;">
+            <h2 style="text-align: center; margin-bottom: 20px;">⚠️ Critical Requirements & Common Pitfalls</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div>
+                    <h3>❌ What NOT to Do</h3>
+                    <ul style="margin-top: 15px;">
+                        <li><strong>Don't use AI tools</strong> (ChatGPT, Copilot, Grammarly)</li>
+                        <li><strong>Don't be generic</strong> - avoid statements that could apply to any company</li>
+                        <li><strong>Don't use bullet points</strong> - write in full paragraphs</li>
+                        <li><strong>Don't repeat assessment questions</strong></li>
+                        <li><strong>Don't ignore word limits</strong> - stick to ±10% of 1200 words</li>
+                        <li><strong>Don't fabricate references</strong></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>✅ Success Strategies</h3>
+                    <ul style="margin-top: 15px;">
+                        <li><strong>Be specific to your company</strong> - use actual mission and data</li>
+                        <li><strong>Connect to Assessment 2A</strong> - show clear continuity</li>
+                        <li><strong>Use real financial data</strong> - support with company metrics</li>
+                        <li><strong>Write professionally</strong> - for external financiers</li>
+                        <li><strong>Cite properly</strong> - Harvard referencing</li>
+                        <li><strong>Proofread carefully</strong> - errors hurt credibility</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="criteria-grid">
+            <div class="criteria-card">
+                <h3 style="color: #e74c3c;">📊 Marking Criteria Breakdown</h3>
+                <div style="margin-top: 20px;">
+                    <div style="background: #3498db; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <strong>Proposal of Projects (25%)</strong>
+                    </div>
+                    <div style="background: #2ecc71; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <strong>Investment Evaluation (25%)</strong>
+                    </div>
+                    <div style="background: #f39c12; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <strong>Recommendation (20%)</strong>
+                    </div>
+                    <div style="background: #9b59b6; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <strong>Clarity & Precision (15%)</strong>
+                    </div>
+                    <div style="background: #e67e22; color: white; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                        <strong>Research Quality (15%)</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h2 style="text-align: center; margin-bottom: 30px;">🚀 3-Week Action Plan</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-week">Week 1</div>
+                <div class="timeline-content">
+                    <h3>Planning & Research</h3>
+                    <ul>
+                        <li>Review Assessment 2A materials</li>
+                        <li>Complete mind map template</li>
+                        <li>Find 8-12 high-quality sources</li>
+                        <li>Draft report outline</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">Week 2</div>
+                <div class="timeline-content">
+                    <h3>Writing & Revision</h3>
+                    <ul>
+                        <li>Write first draft</li>
+                        <li>Check Assessment 2A connections</li>
+                        <li>Refine project recommendation</li>
+                        <li>Complete Harvard referencing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-week">Week 3</div>
+                <div class="timeline-content">
+                    <h3>Final Polish</h3>
+                    <ul>
+                        <li>Word count check (1080-1320 words)</li>
+                        <li>Proofread for errors</li>
+                        <li>Final review as external financier</li>
+                        <li>Submit via Turnitin</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #00b894, #00cec9); color: white; padding: 30px; border-radius: 15px; text-align: center;">
+            <h2>🎯 Final Success Tips</h2>
+            <div class="checklist" style="margin-top: 30px;">
+                <div class="checklist-item" style="background: rgba(255,255,255,0.9); color: #2d3436;">Think Like a Financier</div>
+                <div class="checklist-item" style="background: rgba(255,255,255,0.9); color: #2d3436;">Show, Don't Tell</div>
+                <div class="checklist-item" style="background: rgba(255,255,255,0.9); color: #2d3436;">Connect the Dots</div>
+                <div class="checklist-item" style="background: rgba(255,255,255,0.9); color: #2d3436;">Be Professional</div>
+                <div class="checklist-item" style="background: rgba(255,255,255,0.9); color: #2d3436;">Start Early</div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2em; font-weight: bold;">
+                Remember: This report could genuinely be submitted to a bank or investor. Make it professional, compelling, and specific to your chosen company's real situation and opportunities.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // No interactive functionality needed - all sections are always open
+    </script>
+</body>
+</html>
